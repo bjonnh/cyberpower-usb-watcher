@@ -2,7 +2,7 @@ This is a simple script that allows to watch a CyberPower UPS by USB (without us
 
 I use it to export my UPS status into Prometheus:
 
-![Screenshot in prometheus](./screenshot.png)
+[[./screenshot.png]]
 
 - You can use it without root (careful, some of these can be turned off by USB, so giving access to non-root would also give them the right to do so)
 - You can use it on non x86 platforms.
