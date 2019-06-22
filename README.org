@@ -17,12 +17,12 @@ For now, it only manages the PR3000LCDRTXL2U model, but it should be trivial to
 support others that use the same HID approach.
 
 * Use with prometheus
-#+BEGIN_CODE shell
+#+BEGIN_SRC shell
 virtualenv --python=python3 venv
 source venv/bin/activate
 pip install -r requirements.txt
 Run server.py
-#+END_CODE
+#+END_SRC
 the metrics will be available on http://127.0.0.1:9500/metrics
 
 * Useful docs
@@ -33,10 +33,10 @@ https://usb.org/sites/default/files/pdcv10.pdf : The official HID tables for Pow
 
 * Example of output as json (default for usb.py)
 
-#+BEGIN_CODE json
+#+BEGIN_SRC json
 {'load': 9, 'vin': 114, 'vout': 114, 'test': 0, 'capacity': 3000, 'batterytype': 'PbAcid', 'manufacturer': 'CyberPower Systems', 'firmware': 'PTEEU2000XYZ', 'product': 'PR3000LCDRTXL2U     ', 'ac': True, 'charge': True, 'belowcap': False, 'full': True, 'overtimelimit': True, 'runtime': 58, 'battery': 100}
 {'load': 20, 'vin': 113, 'vout': 113, 'test': 0, 'capacity': 3000, 'batterytype': 'PbAcid', 'manufacturer': 'CyberPower Systems', 'firmware': 'PTEEU2000ZYX', 'product': 'PR3000LCDRTXL2U     ', 'ac': True, 'charge': True, 'belowcap': False, 'full': True, 'overtimelimit': True, 'runtime': 19, 'battery': 100}
-#+END_CODE 
+#+END_SRC 
 
 * What to do if you use a different model
 
