@@ -1,9 +1,0 @@
-This is a simple script that allows to watch a CyberPower UPS by USB.
-
-The objective is to have it export for Prometheus.
-
-The other problem is that there is no serial number in these units, or at least not accessible by USB meaning you cannot recognize which unit is which just by using USB.
-
-For now, it only manages the PR3000LCDRTXL2U model, but it should be trivial to support others that use the same HID approach.
-
-
