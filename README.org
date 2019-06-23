@@ -46,3 +46,7 @@ https://usb.org/sites/default/files/pdcv10.pdf : The official HID tables for Pow
 
   In the code, change VENDOR_ID and PRODUCT_ID to match your product.
 
+* What to do if you require complex features
+
+  Have a look at [[https://networkupstools.org/][Network UPS Tools]].
+  
