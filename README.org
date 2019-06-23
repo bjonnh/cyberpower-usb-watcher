@@ -17,11 +17,15 @@ For now, it only manages the PR3000LCDRTXL2U model, but it should be trivial to
 support others that use the same HID approach.
 
 * Use with prometheus
+You need to have libhidapi-libusb installed (the libhidapi-hidraw version will not work as the devices will not get listed).
+
+On Ubuntu, the package is named **libhidapi-libusb0**.
+
 #+BEGIN_SRC shell
 virtualenv --python=python3 venv
 source venv/bin/activate
 pip install -r requirements.txt
-Run server.py
+./server.py
 #+END_SRC
 the metrics will be available on http://127.0.0.1:9500/metrics
 
