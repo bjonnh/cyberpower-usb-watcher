@@ -12,6 +12,7 @@
 #   See the License for the specific language governing permissions and
 #   limitations under the License.
 
+import argparse
 from usb import CyberPower
 import hid
 from http.server import HTTPServer, BaseHTTPRequestHandler
@@ -42,10 +43,18 @@ class CatchHandler(BaseHTTPRequestHandler):
             self.end_headers()
             self.wfile.write(catch())
 
-def run(server_class=HTTPServer, handler_class=CatchHandler):
-    server_address = ('127.0.0.1', 9500)
+def run(listen_ip, listen_port, server_class=HTTPServer, handler_class=CatchHandler):
+    server_address = (listen_ip, listen_port)
     httpd = server_class(server_address, handler_class)
     httpd.serve_forever()
 
+def arguments():
+    parser = argparse.ArgumentParser()
+    parser.add_argument('--listen-ip', type=str, default='127.0.0.1')
+    parser.add_argument('--listen-port', type=int, default=9500)
+    return parser.parse_args()
+
+
 if __name__ == "__main__":
-    run()
+    args = arguments()
+    run(args.listen_ip, args.listen_port)
