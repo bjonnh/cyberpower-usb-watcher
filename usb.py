@@ -95,18 +95,19 @@ class CyberPower:
 
 def main():
     VENDOR_ID = 0x0764
-    PRODUCT_ID = 0x0601
-    device_list = hid.enumerate(VENDOR_ID, PRODUCT_ID)
-    for device_item in device_list:
-        device = hid.Device(path=device_item['path'])
+    product_ids = [0x0501, 0x0601]
+    for product_id in product_ids:
+        device_list = hid.enumerate(VENDOR_ID, product_id)
+        for device_item in device_list:
+            device = hid.Device(path=device_item['path'])
 
-        ups = CyberPower(device)
-        # This crashes the hid library because some of these devices have no serial...
-        #print("Serial Number: {}".format(device.))
-        print(ups.dict_status())
-        # If you just need the remaining time and battery charge
-        # print(ups.quick_status())
-        device.close()
+            ups = CyberPower(device)
+            # This crashes the hid library because some of these devices have no serial...
+            #print("Serial Number: {}".format(device.))
+            print(ups.dict_status())
+            # If you just need the remaining time and battery charge
+            # print(ups.quick_status())
+            device.close()
 
 
 if __name__ == "__main__":

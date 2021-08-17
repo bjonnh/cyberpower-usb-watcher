@@ -20,19 +20,20 @@ from http.server import HTTPServer, BaseHTTPRequestHandler
 def catch():
     output = ""
     VENDOR_ID = 0x0764
-    PRODUCT_ID = 0x0601
-    device_list = hid.enumerate(VENDOR_ID, PRODUCT_ID)
-    for device_item in device_list:
-        device = hid.Device(path=device_item['path'])
-        ups = CyberPower(device)
-        res = ups.dict_status()
-        firmware = res["firmware"]
-        for key,value in res.items():
-            if value in [True,False]:
-                value = int(value == True)
-            if isinstance(value, int):
-                output += "ups_{}{{firmware=\"{}\"}} {}\n".format(key, firmware, value)
-        device.close()
+    product_ids = [0x0501, 0x0601]
+    for product_id in product_ids:
+        device_list = hid.enumerate(VENDOR_ID, product_id)
+        for device_item in device_list:
+            device = hid.Device(path=device_item['path'])
+            ups = CyberPower(device)
+            res = ups.dict_status()
+            firmware = res["firmware"]
+            for key,value in res.items():
+                if value in [True,False]:
+                    value = int(value == True)
+                if isinstance(value, int):
+                    output += "ups_{}{{firmware=\"{}\"}} {}\n".format(key, firmware, value)
+            device.close()
     return output.encode("ascii")
 
 class CatchHandler(BaseHTTPRequestHandler):
